@@ -1,0 +1,26 @@
+﻿/// <reference path='components/jqwidgets.d.ts' />
+import { Component, ViewChild } from '@angular/core';
+import { jqxButtonComponent }   from 'components/angular_jqxbuttons';
+ 
+@Component({
+    selector: 'my-app',
+    template: `<angularButton #buttonReference (OnClick)='myButtonOnClick($event)'>
+                   Button
+               </angularButton>`
+})
+ 
+export class AppComponent
+{
+    @ViewChild('buttonReference') myButton: jqxButtonComponent;
+ 
+    ngAfterViewInit(): void
+    {
+        this.myButton.createWidget({ width: 120, height: 40 });
+    }
+ 
+    ButtonClicked(event): void
+    {
+        let args = event.args;
+        // Do Something
+    }   
+}

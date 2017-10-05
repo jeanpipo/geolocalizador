@@ -1,0 +1,52 @@
+<html>
+  <head>
+      <script src="../../lib/jquery/js/jquery2.1.4.js"></script>
+    <script>
+
+    function calculate() {
+        var Periodo = parseFloat(17520*30);
+        var UnidadesDelPeriodo = "minute";
+        var FechaInicio = "Sun Aug 10 1980 12:20:00 GMT-0300 (Hora estándar de Argentina)";
+        FechaInicio = new Date("1980-08-10");
+
+        FechaInicio = DateAdd(UnidadesDelPeriodo, 1, FechaInicio);
+
+
+
+        var fecha = DateAdd(UnidadesDelPeriodo, Periodo, FechaInicio);
+alert(fecha);
+
+    }
+
+
+
+    function DateAdd(timeU, byMany, dateObj) {
+    var millisecond = 1;
+    var second = millisecond * 1000;
+    var minute = second * 60;
+    var minute = second * 60;
+    var hour = minute * 60;
+    var day = hour * 24;
+
+    var newDate;
+    var dVal = dateObj.valueOf();
+    switch (timeU) {
+        case "minute": newDate = new Date(dVal + minute * byMany); break;
+        case "hour": newDate = new Date(dVal + hour * byMany); break;
+        case "day": newDate = new Date(dVal + day * byMany); break;
+        case "day2": newDate = new Date(dVal + day * parseInt(byMany)); break;
+    }
+    return newDate;
+}
+
+
+      function getValue(){
+        console.log("este es el valor del range = "+$("#range").val());
+        calculate($("#range").val());
+      }
+    </script>
+  </head>
+  <body>
+    <input type="range" max="336" step="20" min="0" id="range" onchange="getValue();">
+  </body>
+</html>

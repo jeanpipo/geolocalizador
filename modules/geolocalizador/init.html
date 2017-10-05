@@ -1,0 +1,80 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <title>Init Geolocalizador</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+   <link rel="stylesheet" href="../../lib/bootstrap/css/bootstrap.css">
+  <link rel="stylesheet" href="../../lib/jstree/css/style.min.css" />
+  <script src="../../lib/jquery/js/jquery2.1.4.js"></script>
+  <script src="../../lib/bootstrap/js/bootstrap.js"></script>
+  <script src="../../lib/adminLTE/js/adminLTE.js"></script>
+ 
+
+
+  <link rel="stylesheet" href="../../lib/adminLTE/css/AdminLTE.css">
+  <link rel="stylesheet" href="../../lib/adminLTE/css/skin-blue-light.min.css">
+  <link rel="stylesheet" href="../../lib/adminLTE/css/ionicons.min.css">
+  <link rel="stylesheet" href="../../lib/bootstrap/css/font-awesome.css">
+
+   <!-- LEAFLET -->
+  <link rel="stylesheet" href="../../lib/leaflet/css/leaflet.css" />
+  <script src="../../lib/leaflet/js/leaflet-src.js"></script> 
+  <script src="../../lib/leaflet/js/activeLayers.js"></script> 
+  <script src="../../lib/leaflet/js/selectLayers.js"></script> 
+
+  <!-- PRUNECLUSTER -->
+  <link rel="stylesheet" href="../../lib/pruneCluster/css/pruneCluster.css" />
+  <script src="../../lib/pruneCluster/js/pruneCluster.js"></script> 
+
+
+  <!-- TOASTR -->
+  <link rel="stylesheet" href="../../lib/toastr/css/toastr.min.css" />
+  <script src="../../lib/toastr/js/toastr.min.js"></script> 
+
+  <!-- JQUERY UI -->
+  <link rel="stylesheet" href="../../lib/jquery-ui/css/jquery-ui.min.css" />
+  <script src="../../lib/jquery-ui/js/jquery-ui.js"></script> 
+
+  <!-- DATEPICKER -->
+  <link rel="stylesheet" href="../../lib/datepicker/css/datepicker.css" />
+  <script src="../../lib/datepicker/js/bootstrap-datepicker.js"></script> 
+
+ 
+  <!-- MODULE -->
+  <script src="../../modules/geolocalizador/js/geolocalizador.js"></script>  
+
+
+<script>
+
+function init(){
+	
+	if(navigator.appName.indexOf('Netscape') != -1){
+		window.open('geolocalizador.html',
+			'',
+			'width=1200,height=700,left=50,top=50');
+		void 0}
+		; return false;
+
+}
+
+$(document).ready(function(){
+
+
+
+});
+
+	
+</script>
+</head>
+
+<body>
+<div class="page-header">
+	<button onclick="init();">Iniciar Geolocalizador</button>     
+</div> 
+
+
+</body>
+</html>
