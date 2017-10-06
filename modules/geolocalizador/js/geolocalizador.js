@@ -19,7 +19,8 @@ var elCluster="";
 var gTimer="";
 var gOpciones = [];
 var theColors=[];
-
+var gBool=false;
+var gContentMarkers ="";
 
 function initDatePicker(){
 	$('#date').datepicker({
@@ -381,8 +382,8 @@ function initTree(){
 		},
 		"check_callback" : true,
     "conditionalselect" : function (node, event) {
-			console.log("to");
-			console.log(cluster);
+			//console.log("to");
+			//console.log(cluster);
 					if(node.text!=conf.tree[0].root){
 
 						var e =  window.event || event;
@@ -1054,10 +1055,10 @@ function addPin(pins){
 	else {
 		longitud=marker["dos"].length;
 	}
-	console.log("el pun papa "+x);
-	console.log(bufferOptions);
-	console.log(cluster.Cluster._markers);
-	console.log(marker);
+	//console.log("el pun papa "+x);
+	//console.log(bufferOptions);
+	//console.log(cluster.Cluster._markers);
+	//console.log(marker);
 
 	for(let i=0; i<longitud;i++){
 		for(let y=0; x>=y;y++){
@@ -1114,14 +1115,22 @@ function getColorToRemoveInLeyend(nombre){
 function removeFromMarker(nombre){
 			let keys= ["uno","dos","tres","cuatro"];
 			let fracciones = getJSONFracciones();
+			let toRemoveMarker=[];
+			let marcadores= "";
+
+		//	gOpciones.splice(gOpciones.indexOf(marker["name"+nombre]),1);
+		gOpciones[gOpciones.indexOf(marker["name"+nombre])]=gOpciones[gOpciones.length-1];
+		gOpciones.splice(gOpciones.length-1,1);
+		//	alert(gOpciones.indexOf(marker["name"+nombre])+" *** "+ nombre);
+			console.log(gOpciones);
 			if(keys.indexOf(nombre)<3){
 			//	console.log("*** "+keys.indexOf(nombre));
 				for(let x=3;x>=0;x--){
 
 					if(marker[keys[x]]!=false){
 						console.log(" ***** BORRANDO ***** ");
-						let toRemoveMarker=[];
-						let marcadores= "";
+						toRemoveMarker=[];
+						marcadores= "";
 						console.log(cluster);
 						cluster._objectsOnMap.forEach(value=>{
 							marcadores=cluster.Cluster.FindMarkersInArea(value.bounds);
@@ -1129,12 +1138,11 @@ function removeFromMarker(nombre){
 							marcadores.forEach(value=>{
 								if(marker["name"+nombre]==value.data.optionName)
  							 		toRemoveMarker.push(value);
-
 							});
-
 						});
-						console.log("looooco");
+						console.log("looooco "+toRemoveMarker.length);
 						//console.log(toRemoveMarker);
+
 						if(toRemoveMarker.length>0){
 							cluster.RemoveMarkers(toRemoveMarker);
 							cluster.RedrawIcons();
@@ -1225,6 +1233,8 @@ function removeFromMarker(nombre){
 					}
 				}*/
 			}
+
+
 
 	}
 
@@ -1406,8 +1416,7 @@ setTimeout(function () {
 	cluster.RedrawIcons();
 	console.log("listo");
 }, 10000);*/
-var gBool=false;
-var gContentMarkers ="";
+
 cluster.BuildLeafletClusterIcon = function(cluster,p) {
         var e = new L.Icon.MarkerCluster({
         		iconUrl: 'subLogo.png',
@@ -1418,8 +1427,8 @@ cluster.BuildLeafletClusterIcon = function(cluster,p) {
 				//cluster.bounds
 			  //clearTimeout(gTimer);
 				//gTimer= setTimeout(function () {
-					console.log("pipoooox "+gContadorForCluster);
-					console.log(p);
+				//	console.log("pipoooox "+gContadorForCluster);
+			//		console.log(p);
 					//console.log(p.Cluster);
 				/*	if(p){
 						console.log("taro");
@@ -1457,20 +1466,20 @@ cluster.BuildLeafletClusterIcon = function(cluster,p) {
 									boleano=false;
 								}else
 									theColors[theColors.length-1]+=gContentMarkers[i].data.category;
-									console.log(JSON.stringify(gContentMarkers[i].data.optionName)+" mostrando "+contando+" categoria "+gContentMarkers[i].data.category);
+								//	console.log(JSON.stringify(gContentMarkers[i].data.optionName)+" mostrando "+contando+" categoria "+gContentMarkers[i].data.category);
 							}
 						}
 						boleano=true;
 					}
 					console.log(theColors);
 					for(let x=0;x<gOpciones.length;x++){
-						console.log("mami rruky "+(theColors[x]/contando));
+						console.log(theColors[x]/(cluster.totalWeight/gOpciones.length)+" mami rruky "+(theColors[x]/contando) +" el otroo "+gOpciones.length);
 						if((theColors[x]/(cluster.totalWeight/gOpciones.length))% 1==0)
 							theColors[x]=(theColors[x]/(cluster.totalWeight/gOpciones.length));
 						else {
 							theColors[x]=(theColors[x]/contando);
 						}
-						console.log(cluster);
+				//		console.log(cluster);
 					}
 				}
 				else {
